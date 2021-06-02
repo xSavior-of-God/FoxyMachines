@@ -14,13 +14,15 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class QuestUtils {
     public static NamespacedKey KEY = new NamespacedKey(FoxyMachines.getInstance(), "quest");
 
-    private static final List<Line> CURSED_LINES = List.of(
+    private static final List<Line> CURSED_LINES = Arrays.asList(
             new Line("I would love to kill a ", ", so tasty!"),
             new Line("Give me a ", ", now!"),
             new Line("Surely you can help me slay a ", "."),
@@ -32,8 +34,9 @@ public class QuestUtils {
             new Line("I could be devouring a ", " whole day."),
             new Line("I've been waiting for too long. Too long or a day to kill a ", "."),
             new Line("", "'s blood shall be spilled"),
-            new Line("My curse shall devour ", "'s soul"));
-    private static final List<Line> CELESTIAL_LINES = List.of(
+            new Line("My curse shall devour ", "'s soul")
+    );
+    private static final List<Line> CELESTIAL_LINES = Arrays.asList(
             new Line("I love all beings... except ", ", I hate those."),
             new Line("All life must be in balance, what's why I need to kill a ", "."),
             new Line("I am celestial, but I am also a sword. Now get me a ", "."),
@@ -44,7 +47,8 @@ public class QuestUtils {
             new Line("The God wants a ", " dead."),
             new Line("For God and honour, go slay a ", "."),
             new Line("Go, get that ", "! For justice!"),
-            new Line("The stars have aligned. I can clearly see the ", " that shall die by my blade"));
+            new Line("The stars have aligned. I can clearly see the ", " that shall die by my blade")
+    );
 
     @ParametersAreNonnullByDefault
     public static void sendQuestLine(Player p, SlimefunItemStack item) {
@@ -295,7 +299,6 @@ public class QuestUtils {
     }
 }
 
-@AllArgsConstructor
 class Line {
     @Getter
     private final String firstHalf;

@@ -1,6 +1,5 @@
 package me.gallowsdove.foxymachines.utils;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import me.gallowsdove.foxymachines.FoxyMachines;
 import org.bukkit.Bukkit;
@@ -15,9 +14,7 @@ import lombok.Getter;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Objects;
-import java.util.UUID;
 
-@AllArgsConstructor
 @EqualsAndHashCode
 public class SimpleLocation {
 
