@@ -301,4 +301,17 @@ class Line {
     private final String firstHalf;
     @Getter
     private final String secondHalf;
+
+    public Line(String firstHalf, String secondHalf) {
+        this.firstHalf = firstHalf;
+        this.secondHalf = secondHalf;
+    }
+
+    public String getFirstHalf() {
+        return firstHalf;
+    }
+
+    public String getSecondHalf() {
+        return secondHalf;
+    }
 }

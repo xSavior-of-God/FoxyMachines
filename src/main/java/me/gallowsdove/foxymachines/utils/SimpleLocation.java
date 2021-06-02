@@ -14,6 +14,7 @@ import lombok.Getter;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Objects;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -32,11 +33,18 @@ public class SimpleLocation {
     @Getter
     private final int z;
     @Getter
-    private final String worldUUID;
+    private final String worldName;
+
+    public <Z> SimpleLocation(int x, int y, int z, String worldName) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.worldName = worldName;
+    }
 
     @Nonnull
     public Block toBlock() {
-        return Bukkit.getServer().getWorld(UUID.fromString(this.worldUUID)).getBlockAt(this.x, this.y, this.z);
+        return Objects.requireNonNull(Bukkit.getServer().getWorld(this.worldName)).getBlockAt(this.x, this.y, this.z);
     }
 
     public SimpleLocation(@Nonnull Block b) {
@@ -44,7 +52,7 @@ public class SimpleLocation {
     }
 
     public SimpleLocation(@Nonnull Location loc) {
-        this.worldUUID = loc.getWorld().getUID().toString();
+        this.worldName = Objects.requireNonNull(loc.getWorld()).getName();
         this.x = loc.getBlockX();
         this.y = loc.getBlockY();
         this.z = loc.getBlockZ();
@@ -54,7 +62,7 @@ public class SimpleLocation {
         container.set(X_KEY, PersistentDataType.INTEGER, this.x);
         container.set(Y_KEY, PersistentDataType.INTEGER, this.y);
         container.set(Z_KEY, PersistentDataType.INTEGER, this.z);
-        container.set(WORLD_KEY, PersistentDataType.STRING, this.worldUUID);
+        container.set(WORLD_KEY, PersistentDataType.STRING, this.worldName);
     }
 
     @Nullable
