@@ -21,14 +21,16 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 public class GhostBlock extends SlimefunItem {
 
     public static final NamespacedKey KEY = new NamespacedKey(FoxyMachines.getInstance(), "ghost_block");
 
-    public static final Set<Material> EXCLUDED = Set.of(Material.BARRIER, Material.SPAWNER, Material.COMMAND_BLOCK,
-            Material.STRUCTURE_BLOCK, Material.REPEATING_COMMAND_BLOCK, Material.CHAIN_COMMAND_BLOCK, Material.JIGSAW);
+    public static final Set<Material> EXCLUDED = new HashSet<Material>(Arrays.asList(Material.BARRIER, Material.SPAWNER, Material.COMMAND_BLOCK,
+            Material.STRUCTURE_BLOCK, Material.REPEATING_COMMAND_BLOCK, Material.CHAIN_COMMAND_BLOCK, Material.JIGSAW));
 
     @Nonnull
     private final Material material;

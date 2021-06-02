@@ -18,10 +18,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 import javax.annotation.Nonnull;
 import javax.annotation.OverridingMethodsMustInvokeSuper;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public abstract class CustomBoss extends CustomMob {
 
@@ -33,7 +30,7 @@ public abstract class CustomBoss extends CustomMob {
 
     public CustomBoss(@Nonnull String id, @Nonnull String name, @Nonnull EntityType type, int health, @Nonnull DamageCause... resistances) {
         super(id, name, type, health);
-        this.resistances = Set.of(resistances);
+        this.resistances = new HashSet<DamageCause>(Arrays.asList(resistances));
     }
 
     protected static final class BossBarStyle {

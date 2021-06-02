@@ -14,12 +14,14 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class RiddenSkeletonHorse extends CustomMob {
-    private static final Set<DamageCause> RESISTANCES = Set.of(new DamageCause[] {
-            DamageCause.CRAMMING, DamageCause.POISON, DamageCause.BLOCK_EXPLOSION, DamageCause.ENTITY_EXPLOSION});
+    private static final Set<DamageCause> RESISTANCES = new HashSet<DamageCause>(Arrays.asList(new DamageCause[]{
+            DamageCause.CRAMMING, DamageCause.POISON, DamageCause.BLOCK_EXPLOSION, DamageCause.ENTITY_EXPLOSION}));
 
     public RiddenSkeletonHorse() {
         super("SKELETON_HORSE", "Skeleton Horse", EntityType.SKELETON_HORSE, 2048);

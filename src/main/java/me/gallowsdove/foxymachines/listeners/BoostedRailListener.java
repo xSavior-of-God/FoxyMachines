@@ -9,10 +9,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleMoveEvent;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 public class BoostedRailListener implements Listener {
-    private static final Set<Material> RAILS = Set.of(Material.RAIL, Material.ACTIVATOR_RAIL, Material.DETECTOR_RAIL, Material.POWERED_RAIL);
+    private static final Set<Material> RAILS = new HashSet<Material>(Arrays.asList(Material.RAIL, Material.ACTIVATOR_RAIL, Material.DETECTOR_RAIL, Material.POWERED_RAIL));
 
     @EventHandler(ignoreCancelled = true)
     private void onRailUse(@Nonnull VehicleMoveEvent e) {
