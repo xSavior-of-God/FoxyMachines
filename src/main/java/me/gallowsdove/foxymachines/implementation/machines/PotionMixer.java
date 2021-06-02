@@ -394,7 +394,7 @@ public class PotionMixer extends SlimefunItem implements EnergyNetComponent {
                     potionMeta.addCustomEffect(effect, false);
                 }
 
-                List<String> lore = new ArrayList<>() {{
+                List<String> lore = new ArrayList<String>() {{
                     add("Not usable in Brewing Stand");
                 }};
                 potionMeta.setBasePotionData(new PotionData(PotionType.UNCRAFTABLE, false, false));

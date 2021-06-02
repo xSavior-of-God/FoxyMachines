@@ -32,6 +32,22 @@ public class SimpleLocation {
     @Getter
     private final String worldName;
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getZ() {
+        return z;
+    }
+
+    public String getWorldName() {
+        return worldName;
+    }
+
     public <Z> SimpleLocation(int x, int y, int z, String worldName) {
         this.x = x;
         this.y = y;

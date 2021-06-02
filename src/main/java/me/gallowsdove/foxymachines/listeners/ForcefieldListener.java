@@ -94,7 +94,7 @@ public class ForcefieldListener implements Listener {
         if (e.getCause() == TeleportCause.ENDER_PEARL || e.getCause() == TeleportCause.CHORUS_FRUIT) {
             Location l = e.getTo();
             for (SimpleLocation loc: ForcefieldDome.domeLocations) {
-                if (e.getPlayer().getWorld() == Bukkit.getServer().getWorld(UUID.fromString(loc.getWorldUUID()))) {
+                if (e.getPlayer().getWorld() == Bukkit.getServer().getWorld(loc.getWorldName())) {
                     int xdif = (int) (l.getX() - loc.getX());
                     int ydif = (int) (l.getY() - loc.getY());
                     int zdif = (int) (l.getZ() - loc.getZ());

@@ -39,8 +39,8 @@ public final class ForcefieldDome extends SlimefunItem implements EnergyNetCompo
 
     public static final int ENERGY_CONSUMPTION = 6000;
 
-    private static final Set<Material> MATERIALS_TO_REPLACE = Set.of(Material.AIR, Material.CAVE_AIR, Material.WATER,
-            Material.LAVA);
+    private static final Set<Material> MATERIALS_TO_REPLACE = new HashSet<Material> (Arrays.asList(Material.AIR, Material.CAVE_AIR, Material.WATER,
+            Material.LAVA));
 
     public static ArrayList<SimpleLocation> domeLocations = new ArrayList<>();
 
@@ -222,7 +222,7 @@ public final class ForcefieldDome extends SlimefunItem implements EnergyNetCompo
 
     public void setupDomes() {
         for (SimpleLocation loc: domeLocations) {
-            World w = Bukkit.getServer().getWorld(UUID.fromString(loc.getWorldUUID()));
+            World w = Bukkit.getServer().getWorld(loc.getWorldName());
             if (w == null) {
                 domeLocations.remove(loc);
                 continue;
@@ -235,22 +235,26 @@ public final class ForcefieldDome extends SlimefunItem implements EnergyNetCompo
         }
     }
 
-    public static void saveDomeLocations() throws IOException {
-        Gson gson = new Gson();
+    public static void saveDomeLocations() {
+        try {
+            Gson gson = new Gson();
 
-        String pluginFolder = FoxyMachines.getInstance().folderPath;
+            String pluginFolder = FoxyMachines.getInstance().folderPath;
 
-        File file = new File(pluginFolder + File.separator + "domedata");
-        File filePath = new File(pluginFolder);
+            File file = new File(pluginFolder + File.separator + "domedata");
+            File filePath = new File(pluginFolder);
 
-        filePath.mkdirs();
-        if (!file.exists()) {
-            file.createNewFile();
+            filePath.mkdirs();
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
+            writer.write(gson.toJson(ForcefieldDome.domeLocations));
+            writer.close();
+        } catch(IOException e) {
+            e.printStackTrace();
         }
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
-        writer.write(gson.toJson(ForcefieldDome.domeLocations));
-        writer.close();
     }
 
     public static void loadDomeLocations() throws IOException {

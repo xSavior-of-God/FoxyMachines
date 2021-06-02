@@ -62,7 +62,7 @@ public class RemoteController extends SlimefunItem implements NotPlaceable, Rech
                 SimpleLocation loc = SimpleLocation.fromPersistentStorage(container);
 
                 if (loc != null) {
-                    World world = Bukkit.getWorld(UUID.fromString(loc.getWorldUUID()));
+                    World world = Bukkit.getWorld(loc.getWorldName());
 
                     Block b = world.getBlockAt(loc.getX(), loc.getY(), loc.getZ());
 

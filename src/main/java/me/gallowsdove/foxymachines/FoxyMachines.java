@@ -17,6 +17,7 @@ import me.gallowsdove.foxymachines.tasks.QuestTicker;
 
 import javax.annotation.Nonnull;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,8 +42,12 @@ public class FoxyMachines extends AbstractAddon {
         ResearchSetup.INSTANCE.init();
 
         this.folderPath = getDataFolder().getAbsolutePath() + File.separator + "data-storage" + File.separator;
-        BerryBushTrimmer.loadTrimmedBlocks();
-        ForcefieldDome.loadDomeLocations();
+        try {
+            BerryBushTrimmer.loadTrimmedBlocks();
+            ForcefieldDome.loadDomeLocations();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         runSync(() -> ForcefieldDome.INSTANCE.setupDomes());
         scheduleRepeatingAsync(new QuestTicker(), 10, 240);
         scheduleRepeatingAsync(new GhostBlockTask(), 100);
@@ -75,7 +80,11 @@ public class FoxyMachines extends AbstractAddon {
     @SneakyThrows
     @Override
     public void onDisable() {
-        BerryBushTrimmer.saveTrimmedBlocks();
+        try {
+            BerryBushTrimmer.saveTrimmedBlocks();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         ForcefieldDome.saveDomeLocations();
         CustomBoss.removeBossBars();
     }
